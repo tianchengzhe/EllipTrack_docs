@@ -137,7 +137,7 @@ Movie Definition (*movie_definition*)
         - Frame ID. Number 
         - Image sequences  
 
-   Field widths can be specified. For example, ``%03t`` indciates that Frame ID has three digits, filled with prefix zeros.
+   Field widths can be specified. For example, ``%03t`` indicates that Frame ID has three digits, filled with prefix zeros.
 
    Full filenames should be specified for image sequences/stacks. A prefix is sufficient for Nikon ND2 format.
 

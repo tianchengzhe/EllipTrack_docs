@@ -43,7 +43,7 @@ Compile *generate_tracks.cpp*
 
 *generate_tracks.cpp* is implemented in C++ for speed consideration. Compilation of this file is required before execution. Instruction:
 
-*  Execute ``mex -setup`` to check whether a C++ compiler has been installed in Matlab. Install a free minGW compiler (instruction here_) if not.
+*  Execute ``mex -setup`` to check whether a C++ compiler has been installed in MATLAB. Install a free minGW compiler (instruction here_) if not.
 *  Navigate MATLAB to `functions/track_linking` folder.
 *  Execute the following command in the command window.
 

@@ -54,27 +54,27 @@ Panel 1
 
       Follow the steps below to specify the format.
 
-      *  Add Row ID: Click "Add Row ID", click "Numeric ID", and type "1" in the pop-up textbox. 
+      *  Add Row ID: Click "Add Row ID", click "Numeric ID", and type "1" in the pop-up text box. 
 
          Current format: ``%r``
 
-      *  Add "_" between Row ID and Column ID: Type "_" in the textbox.
+      *  Add "_" between Row ID and Column ID: Type "_" in the text box.
 
          Current format: ``%r_``
 
-      *  Add Column ID: Click "Add Column ID", and type "1" in the pop-up textbox.
+      *  Add Column ID: Click "Add Column ID", and type "1" in the pop-up text box.
 
          Current format: ``%r_%c``
 
-      *  Add "_" between Column ID and Site ID: Type "_" in the textbox.
+      *  Add "_" between Column ID and Site ID: Type "_" in the text box.
 
          Current format: ``%r_%c_``
       
-      *  Add Site ID: Click "Add Site ID", and type "1" in the pop-up textbox.
+      *  Add Site ID: Click "Add Site ID", and type "1" in the pop-up text box.
 
          Current format: ``%r_%c_%s``
       
-      *  Add "_" between Site ID and Channel Name: Type "_" in the textbox.
+      *  Add "_" between Site ID and Channel Name: Type "_" in the text box.
 
          Current format: ``%r_%c_%s_``
 
@@ -82,15 +82,15 @@ Panel 1
 
          Current format: ``%r_%c_%s_%n``
 
-      *  Add "_" between Channel Name and Frame ID: Type "_" in the textbox.
+      *  Add "_" between Channel Name and Frame ID: Type "_" in the text box.
 
          Current format: ``%r_%c_%s_%n_``
 
-      *  Add Frame ID: Click "Add Frame ID", and type "3" (for 3 digits) in the pop-up textbox.
+      *  Add Frame ID: Click "Add Frame ID", and type "3" (for 3 digits) in the pop-up text box.
 
          Current format: ``%r_%c_%s_%n_%03t``
 
-      *  Add file extension: Type ".tif" in the textbox.
+      *  Add file extension: Type ".tif" in the text box.
 
          Current format: ``%r_%c_%s_%n_%03t.tif``
 
@@ -106,7 +106,7 @@ Panel 1
       
       Follow the steps below to specify the format.
 
-      *  Add prefix "Well": Type "Well" in the textbox.
+      *  Add prefix "Well": Type "Well" in the text box.
 
          Current format: ``Well``
 
@@ -114,7 +114,7 @@ Panel 1
 
          Current format: ``Well%b``
 
-      *  Add Column ID: Click "Add Column ID", and type "2" (for 3 digits) in the pop-up textbox.
+      *  Add Column ID: Click "Add Column ID", and type "2" (for 3 digits) in the pop-up text box.
 
          Current format: ``Well%b%02c``;
 
@@ -167,7 +167,7 @@ Panel 2
 
    Type movie information and destination folder ("Path"), and click "Extract". Only extract the images from which training datasets will be constructed.
 
-Inout/Output (*inout_para*)
+Input/Output (*inout_para*)
 ===========================
 
 .. figure:: _static/images/parameter/2.png
@@ -179,7 +179,7 @@ Inout/Output (*inout_para*)
 
 2. Outputs --- Paths to the folders storing the outputs.
 
-   Generating "MAT Files" is compulsory. Other outputs are optional. Uncheck "Generate?" if not generating this output.
+   Generating "MAT Files" is compulsory. Other outputs are optional. Un-check "Generate?" if not generating this output.
 
 .. list-table::
    :widths: 1 3

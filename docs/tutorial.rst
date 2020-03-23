@@ -41,9 +41,9 @@ Movie Definition (1/2)
 *  Signal --- Type "H2B".
 *  Image Path --- Click ">" to select the image folder.
 
-   The textbox will display ``Z:/projects/tracking_code/submission2/ctc_hela/training_raw/01/`` (or other paths in your local computer).
+   The text box will display ``Z:/projects/tracking_code/submission2/ctc_hela/training_raw/01/`` (or other paths in your local computer).
 *  Illumination Bias --- Leave empty, since this information is not provided.
-*  Filename --- Procedure: Type "t" in the textbox; Click "Add Frame ID" and Type 3 in the pop-up textbox; Type ".tif" in the textbox. Result should be "t%03t.tif".
+*  Filename --- Procedure: Type "t" in the text box; Click "Add Frame ID" and Type 3 in the pop-up text box; Type ".tif" in the text box. Result should be "t%03t.tif".
 
    Click "Check Filename" and the following message box appears. The input filename meets expectation.
 
@@ -81,7 +81,7 @@ Segmentation
 .. figure:: _static/images/tutorial/1_4.png
    :align: center
 
-*  Load Image --- To examine Frame 20, type 20 in the "Frame" textbox and click "Load Image".
+*  Load Image --- To examine Frame 20, type 20 in the "Frame" text box and click "Load Image".
 *  Intensity --- Modify the values to 33000 and 35000 to visualize dim cell nuclei.
 *  Segmentation parameters --- Parameter values are determined as follows. Arrows are added outside of GUI to indicate the improvements.
 
@@ -159,7 +159,7 @@ Segmentation
    If training datasets are available, users may choose to run this step. 
    It is suggested to set "Min Prob" to a very high value (0.9 or above) to avoid modifying ellipses with great uncertainties.
 
-*  Examine other images by typing Frame IDs in the "Frame" textbox and clicking "Load Images". Modify parameter values if necessary. Repeat this process until segmentation is satisfactory.
+*  Examine other images by typing Frame IDs in the "Frame" text box and clicking "Load Images". Modify parameter values if necessary. Repeat this process until segmentation is satisfactory.
 
 Save Parameters
 ***************
@@ -194,7 +194,7 @@ Open Training Data GUI
 
    *  Folder --- Click ">" and select the folder where the raw images locate.
    
-      The textbox will display ``Z:/projects/tracking_code/submission2/ctc_hela/training_raw/01/`` (or other paths in your local computer).
+      The text box will display ``Z:/projects/tracking_code/submission2/ctc_hela/training_raw/01/`` (or other paths in your local computer).
 
    *  File --- Type "t%03t.tif", the format of image filenames.
 
@@ -205,7 +205,7 @@ Open Training Data GUI
    *  Bias --- Leave empty, since this information is not provided.
    *  SegInfo --- Click ">" and select the folder where the "Segmentation Info" files locate.
 
-      The textbox will display ``Z:/projects/tracking_code/submission2/documentation/tutorial_to_upload/seg_info/`` (or other paths in your local computer).
+      The text box will display ``Z:/projects/tracking_code/submission2/documentation/tutorial_to_upload/seg_info/`` (or other paths in your local computer).
 
    *  Existing --- Leave empty, since the objective is to create a new training dataset.
 
@@ -263,10 +263,10 @@ Motion Training
 
 *  Construct subtracks of cells.
 
-   To construct a subtrack, specify a new Cell ID in the "To Cell" textbox and click ">". 
+   To construct a subtrack, specify a new Cell ID in the "To Cell" text box and click ">". 
    Label a cell's appearance in every frame by clicking the respective ellipse and clicking "Record" (or pressing the "R" hotkey).
    To remove a labeled ellipse, click the ellipse of interest and then click "Clear" (or press the "C" hotkey).
-   To remove a subtrack, specify its Cell ID in the "Clear Cell" textbox and click ">".
+   To remove a subtrack, specify its Cell ID in the "Clear Cell" text box and click ">".
 
    10 cells are labeled for this movie. These cells cover the broad spectra of cell brightness and migration speeds in the movie.
 

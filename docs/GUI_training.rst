@@ -86,7 +86,7 @@ GUI Interface
 
            - Click "-10" button, or press down arrow key.
 
-      Alternatively, switch to any image by specifying its Frame ID in the "To Frame" textbox and clicking ">".
+      Alternatively, switch to any image by specifying its Frame ID in the "To Frame" text box and clicking ">".
 
    *  **Intensity** --- Range of pixel intensities. Specify the lower and upper limits for display.  
 
@@ -240,7 +240,7 @@ Record Cells
    :align: center
    :width: 500
 
-To create a new cell or switch to an existing cell, type Cell ID in the **To Cell ID** textbox and click ">".
+To create a new cell or switch to an existing cell, type Cell ID in the **To Cell ID** text box and click ">".
 To record an ellipse, click the ellipse of interest, and then press "R" or click "Record" button.
 The ellipse will be highlighted in red, and Cell ID will be displayed next to it. The number of instances will increase by one.
 
@@ -254,7 +254,7 @@ Remove Recording
 To remove a recorded ellipse, click the ellipse of interest, and then press "C" or click "Clear" button.
 The ellipse will not be highlighted, and Cell ID will disappear. The number of instances will decrease by one.
 
-To remove all recorded ellipse for a cell, type Cell ID in the "Clear Cell" textbox and click ">".
+To remove all recorded ellipse for a cell, type Cell ID in the "Clear Cell" text box and click ">".
 
 Suggested Strategy
 ******************
