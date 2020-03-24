@@ -19,9 +19,9 @@ Load Images
 
 Specify the following information in the Setting panel.
 
-  *  **Folder** --- Path to the folder storing images of the nuclear channel.
+  *  **Folder** --- Path to the folder storing the images of the nuclear channel.
 
-     Image sequences/stacks only. For Nikon ND2 format, extract movies into image sequences first.
+     Image sequences/stacks only. For Nikon ND2 format, extract the movies into image sequences.
 
   *  **File** --- Format of image filenames.
 
@@ -37,7 +37,7 @@ Specify the following information in the Setting panel.
   *  **Frame** --- Range of Frame IDs to import.
   *  **CMOS** --- Optional. Path to the MAT file storing the camera dark noises. Leave empty if not available.
   *  **Bias** --- Optional. Path to the MAT file storing the illumination bias. Leave empty if not available.
-  *  **SegInfo** --- Path to the folder storing "Segmentation Info" of the imported images.
+  *  **SegInfo** --- Path to the folder storing the "Segmentation Info" of the imported images.
   *  **Existing** --- Optional. Path to the MAT file storing an existing training dataset for the imported images. Leave empty if not available.
 
      GUI examines whether the inputs of **Folder**, **File**, and **Frames** match the information stored in the existing dataset. A warning dialog will appear if any mismatch is found.
@@ -72,23 +72,25 @@ GUI Interface
          * - Option
            - Operation
          * - Forward by 1 Frame
-           - Click "+1" button, press right arrow key, 
+           - Click the "+1" button, press the right arrow key, 
          
              or scroll down the mouse wheel.
          * - Backward by 1 Frame
-           - Click "-1" button, press left arrow key,
+           - Click the "-1" button, press the left arrow key,
 
              or scroll up the mouse wheel.
          * - Forward by 10 Frames 
 
-           - Click "+10" button, or press up arrow key.
+           - Click the "+10" button, or press the up arrow key.
          * - Backward by 10 Frames
 
-           - Click "-10" button, or press down arrow key.
+           - Click the "-10" button, or press the down arrow key.
 
       Alternatively, switch to any image by specifying its Frame ID in the "To Frame" text box and clicking ">".
 
-   *  **Intensity** --- Range of pixel intensities. Specify the lower and upper limits for display.  
+   *  **Intensity** --- Range of pixel intensities. Specify the lower and upper limits for display. 
+
+      The default values are the lowest and highest pixel intensities of the imported image. Adjust this range to visualize dim cell nuclei. 
 
 2. Morphology.
 
@@ -120,7 +122,7 @@ GUI Interface
 
           cells in the next frame. 
 
-          Assume ellipse contains one nucleus.
+          Assume the ellipse contains one nucleus.
         - 4  
       * - :training5:`Dark Red`
         - After M
@@ -128,13 +130,13 @@ GUI Interface
           
           in the previous frame. 
           
-          Assume ellipse contains one nucleus.
+          Assume the ellipse contains one nucleus.
         - 5
       * - :training6:`Light Blue`
         - Apoptosis
         - Apoptotic cell. Will disappear in the next frame.
 
-          Assume ellipse contains one nucleus.
+          Assume the ellipse contains one nucleus.
         - 6   
 
 3. Training result.
@@ -147,8 +149,10 @@ Assign Events
 .. figure:: _static/images/training/2_1.png
    :align: center
 
-To assign an event, click the ellipse of interest, and then press the event's hot key or click its respective ">" button.
+To assign an event, click the ellipse of interest, and then press the event's hotkey or click its respective ">" button.
 The ellipse will be highlighted in the symbolic color of this event, and the number of recorded ellipses for this event will increase by one.
+
+Only one event can be assigned to an ellipse. GUI assumes that the ellipses labeled with :training4:`Before M`, :training5:`After M`, or :training6:`Apoptosis` contain only one cell nucleus, and the ellipses labeled with :training1:`No Cells`, :training2:`One Cell`, or :training3:`Two Cells` are neither mitotic, newly born, nor apoptotic.
 
 Selected ellipses are colored in black. To unselect an ellipse, click any other ellipse or navigate to other frames. No training samples will be created from the unselected ellipses.
 
@@ -159,15 +163,16 @@ Modify and Remove Events
    :align: center
 
 To modify an event, click the ellipse of interest, and then select a new event.
-The ellipse will be highlighted in the symbolic color of the new event. Numbers of recorded ellipses will be adjusted.
+This ellipse will be highlighted in the symbolic color of the new event. The numbers of recorded ellipses will be adjusted.
 
 To remove an event, click the ellipse of interest, and then press "C" or click the respective ">" button.
-The ellipse will not be highlighted, and the number of recorded ellipses for the old event will decrease by one.
+This ellipse will no longer be highlighted, and the number of recorded ellipses for the old event will decrease by one.
 
 Suggested Strategy
 ******************
 
-A training dataset should be constructed from every representative segment of the movie. For each training dataset, use the following guideline.
+A training dataset should be constructed from every representative segment of the movie. Samples should cover the broad spectra of cell morphology, brightness, and behaviors.
+For each training dataset, use the following guideline.
 
 .. list-table::
    :widths: 1 3
@@ -190,6 +195,7 @@ A training dataset should be constructed from every representative segment of th
 
        Do not label if the cell is under-segmented.
 
+
 **Minimal Requirement**. Label one ellipse. Can be any event.
 
 Click "Next" to proceed.
@@ -197,7 +203,7 @@ Click "Next" to proceed.
 Motion Training
 ===============
 
-Objective: Manually label the subtracks of a few cells.
+Objective: Manually label a few cell tracks.
 
 GUI Interface
 *************
@@ -231,7 +237,7 @@ GUI Interface
 
    Image overlaid by fitted ellipses. 
    Trained ellipses of the current cell are colored in red. Other trained ellipses are colored in light red.
-   Respective Cell IDs are plotted next to the trained ellipses.
+   Cell IDs are plotted next to the trained ellipses.
 
 Record Cells
 ************
@@ -240,9 +246,9 @@ Record Cells
    :align: center
    :width: 500
 
-To create a new cell or switch to an existing cell, type Cell ID in the **To Cell ID** text box and click ">".
-To record an ellipse, click the ellipse of interest, and then press "R" or click "Record" button.
-The ellipse will be highlighted in red, and Cell ID will be displayed next to it. The number of instances will increase by one.
+To create a new cell or switch to an existing cell, type a Cell ID in the **To Cell ID** text box and click ">".
+To record an ellipse, click the ellipse of interest, and then press "R" or click the "Record" button.
+This ellipse will be highlighted in red, and its Cell ID will be displayed next to it. The number of instances will increase by one.
 
 Remove Recording
 ****************
@@ -251,16 +257,16 @@ Remove Recording
    :align: center
    :width: 600
 
-To remove a recorded ellipse, click the ellipse of interest, and then press "C" or click "Clear" button.
-The ellipse will not be highlighted, and Cell ID will disappear. The number of instances will decrease by one.
+To remove a recorded ellipse, click the ellipse of interest, and then press "C" or click the "Clear" button.
+This ellipse will no longer be highlighted, and its Cell ID will disappear. The number of instances will decrease by one.
 
-To remove all recorded ellipse for a cell, type Cell ID in the "Clear Cell" text box and click ">".
+To remove all the recorded ellipse for a cell, type its Cell ID in the **Clear Cell** text box and click ">".
 
 Suggested Strategy
 ******************
 
 A training dataset should be constructed from every representative segment of the movie.
-Label 10-15 cells for each training dataset. Use the following guideline.
+Label 10-15 cells for each training dataset. These cells should cover the broad spectra of cell morphology, brightness and behaviors. Use the following guideline.
 
 .. list-table::
    :widths: 3 4

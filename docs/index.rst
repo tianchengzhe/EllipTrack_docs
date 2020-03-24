@@ -25,7 +25,7 @@ Hardware
 Software
   MATLAB (Mathworks), R2017a or later.
 
-  Required toolboxes: System Identification Toolbox, Image Processing Toolbox, Statistics and Machine Learning Toolbox, Parallel Computing Toolbox, and MATLAB Distributed Computing Server.
+  Required toolboxes: System Identification Toolbox, Image Processing Toolbox, Computer Vision Toolbox, Statistics and Machine Learning Toolbox, Parallel Computing Toolbox, and MATLAB Distributed Computing Server.
   
   A C++ compiler in MATLAB with C++11 support. Install a free minGW compiler by following the instruction here_.
 
@@ -44,7 +44,7 @@ Compile *generate_tracks.cpp*
 *generate_tracks.cpp* is implemented in C++ for speed consideration. Compilation of this file is required before execution. Instruction:
 
 *  Execute ``mex -setup`` to check whether a C++ compiler has been installed in MATLAB. Install a free minGW compiler (instruction here_) if not.
-*  Navigate MATLAB to `functions/track_linking` folder.
+*  Navigate MATLAB to the `functions/track_linking` folder.
 *  Execute the following command in the command window.
 
    .. code-block:: matlab

@@ -9,7 +9,7 @@ Outputs
 MAT Files
 =========
 
-All variables except *jitters* from Jitter Correction are m x n x p cell matrices, where ``variable_name{i,j,k}`` stores the information of movie captured in Row i, Column j, and Site k of a multi-well plate.
+All variables except *jitters* from Jitter Correction are m x n x p cell matrices, where ``variable_name{i,j,k}`` stores the information of the movie captured in Row i, Column j, and Site k of a multi-well plate.
 For movies not captured on a multi-well plate, this information is stored in ``variable_name{1,1,1}``.
 
 For clarity, only movie-specific information (``variable_name{i,j,k}``) will be described on this page. Data structure of ``variable_name{i,j,k}`` is shown after "|".
@@ -18,7 +18,7 @@ For example, :gray:`(m x n x p cell matrix | n x 1 cell array)` indicates that `
 Segmentation (*segmentation.mat*)
 *********************************
 
-*  *all_ellipse_info* :gray:`(m x n x p cell matrix | n x 1 cell array)` --- Information of fitted ellipses.
+*  *all_ellipse_info* :gray:`(m x n x p cell matrix | n x 1 cell array)` --- Information of the fitted ellipses.
 
    Each row of ``all_ellipse_info{i,j,k}`` is a MATLAB structure storing the information of one frame.
 
@@ -56,17 +56,17 @@ Segmentation (*segmentation.mat*)
    
       *  *all_cartesian_para* :gray:`(nx1 cell array | 6x1 double array)` --- Fitted coefficients of the general ellipse equation 
      
-         Array (denoted as :math:`a`) satisfies :math:`a_1 x^2 + a_2 xy + a_3 y^2 + a_4 x + a_5 y + a_6 = 0`.
+         This array (denoted as :math:`a`) satisfies :math:`a_1 x^2 + a_2 xy + a_3 y^2 + a_4 x + a_5 y + a_6 = 0`.
 
       *  *all_parametric_para* :gray:`(nx1 cell array | 5x1 double array)` --- Fitted coefficients of the parametric ellipse equation.
 
-         Array (denoted as :math:`a`) satisfies :math:`(x-a_3)^2/a_1^2 + (y-a_4)^2/a_2^2 = 1`. :math:`a_5` is the rotation angle.
+         This array (denoted as :math:`a`) satisfies :math:`(x-a_3)^2/a_1^2 + (y-a_4)^2/a_2^2 = 1`. :math:`a_5` is the rotation angle.
 
-      *  *all_boundary_points* :gray:`(nx1 cell array | 100x2 double matrix)` --- Coordinates of points on the ellipse contour.
+      *  *all_boundary_points* :gray:`(nx1 cell array | 100x2 double matrix)` --- Coordinates of the points on the ellipse contour.
 
          Each row stores the coordinates of one point.
    
-      *  *all_internal_points* :gray:`(nx1 cell array | mx2 integer matrix)` --- Coordinates of pixels in the ellipse interior.
+      *  *all_internal_points* :gray:`(nx1 cell array | mx2 integer matrix)` --- Coordinates of the pixels in the ellipse interior.
 
          Each row stores the coordinates of one pixel.
 
@@ -74,13 +74,13 @@ Segmentation (*segmentation.mat*)
 
          Each element stores the value of one feature.
 
-*  *all_num_ellipses* :gray:`(m x n x p cell matrix | n x 1 integer array)` --- Number of ellipses.
+*  *all_num_ellipses* :gray:`(m x n x p cell matrix | n x 1 integer array)` --- Number of ellipses in each frame.
 
-   Each row ``all_num_ellipses{i,j,k}`` stores the number of ellipses in a frame.
+   Each row ``all_num_ellipses{i,j,k}`` stores the number of ellipses in one frame.
    
    .. code-block:: matlab
 
-      >> all_num_ellipses{2,1,1}(1:10) % Row 2, Column 1, Site 1, Frame 1-5
+      >> all_num_ellipses{2,1,1}(1:5) % Row 2, Column 1, Site 1, Frame 1-5
 
       ans =
 
@@ -97,7 +97,7 @@ Jitter Correction (*jitter_correction.mat*)
 
 *  *accumulated_jitters* :gray:`(m x n x p x 2 integer matrix)` --- Jitter values.
 
-   For movie captured in Row i and Column j, jitters between Frame 1 and Frame t are stored in ``accumulated_jitters(i,j,t,:)``. 
+   For the movie captured in Row i and Column j, the jitters between Frame 1 and Frame t are stored in ``accumulated_jitters(i,j,t,:)``. 
    
    .. code-block:: matlab
 
@@ -108,7 +108,8 @@ Jitter Correction (*jitter_correction.mat*)
          0
          0
    
-   Jitters from different imaging sites of the same well are averaged.
+   EllipTrack assumes that movies captured in different imaging sites of the same well have the same jitter values.
+   Jitters calculated from these movies will be averaged.
 
 Prediction of Events (*probabilities.mat*)
 ******************************************
@@ -116,12 +117,12 @@ Prediction of Events (*probabilities.mat*)
 *  *all_morphology_prob* :gray:`(m x n x p cell matrix | n x 1 cell array)` --- Probabilities of morphological events.
 
    Each row of ``all_morphology_prob{i,j,k}`` stores the probabilities of one frame. 
-   For every frame, the probabilities are organized into a nx2 double matrix, where each row refers to one cell and each column refers to one event. 
+   For every frame, the probabilities are organized into an nx2 double matrix, where each row refers to one cell and each column refers to one event. 
    Events are organized in the following order: :training1:`No Cells`, :training2:`One Cell`, :training3:`Two Cells`, :training4:`Mitotic (Before M)`, :training5:`Newly Born (After M)`, and :training6:`Apoptosis`.
 
    .. code-block:: matlab
 
-      >> all_morphology_prob{2,1,1}{50}(1:10, :) % Row 1, Column 1, Site 1, Frame 50, Ellipse 1-5
+      >> all_morphology_prob{2,1,1}{50}(1:5, :) % Row 1, Column 1, Site 1, Frame 50, Ellipse 1-5
 
       ans =
 
@@ -140,7 +141,7 @@ Prediction of Events (*probabilities.mat*)
 
    .. code-block:: matlab
 
-      >> all_migration_sigma{2,1,1}{50}(1:10) % Row 2, Column 1, Site 1, Frame 50, Ellipse 1-5
+      >> all_migration_sigma{2,1,1}{50}(1:5) % Row 2, Column 1, Site 1, Frame 50, Ellipse 1-5
 
       ans =
 
@@ -163,7 +164,7 @@ Prediction of Events (*probabilities.mat*)
 
          0.5186
 
-*  *all_prob_inout_frame* :gray:`(m x n x p cell matrix | n x 1 cell array)` --- Probabilities of migrating in/out of the field of view.
+*  *all_prob_inout_frame* :gray:`(m x n x p cell matrix | n x 1 cell array)` --- Probabilities of cells migrating in/out of the field of view.
 
    Each row of ``all_prob_inout_frame{i,j,k}`` stores the probabilities of all ellipses in one frame. 
    For each frame, the probabilities are organized into an nx1 double array, where each row refers to one ellipse.
@@ -261,7 +262,7 @@ Track Linking (*tracks.mat*)
           Empty if cells are not mitotic.
         - Empty
 
-   Column "Track Absence" refers to the value if a track is not present at the frame.
+   The column "Track Absence" indicates the value if a cell track is not present at this frame.
 
 Signal Extraction (*signals.mat*)
 *********************************
@@ -299,8 +300,8 @@ Signal Extraction (*signals.mat*)
               intensity_percentile: 75
 
    Most fields are nx1 arrays, where each element stores the information of one frame.
-   Field *intensity_percentile* is an nx1 double array, where each element stores a percentile to measure.
-   Fields *XXX_percentile* are nx2 double matrices, where each row refers to one frame and each column refers to a percentile specified by *intensity_percentile*.
+   The field *intensity_percentile* is an nx1 double array, where each element stores a percentile to measure.
+   The fields *XXX_XXX_percentile* are nx2 double matrices, where each row refers to one frame and each column refers to one percentile specified by *intensity_percentile*.
 
    .. code-block:: matlab
 
@@ -362,29 +363,29 @@ Signal Extraction (*signals.mat*)
           :gray:`(nx1 double array)`
         - Rotation angle of the fitted ellipse.
         - NaN
-      * - *XXX_mean*
+      * - *XXX_XXX_mean*
 
           :gray:`(nx1 double array)`
         - Mean pixel intensity in  
 
           the region of interest.
         - NaN
-      * - *XXX_percentile*
+      * - *XXX_XXX_percentile*
 
           :gray:`(nxm double matrix)`
-        - Percentiles of pixel intensities in 
+        - Percentiles of the pixel intensities 
 
-          the region of interest.
+          in the region of interest.
         - NaN
-      * - *XXX_variance*
+      * - *XXX_XXX_variance*
 
           :gray:`(nx1 double array)`
-        - Variance of pixel intensities in 
+        - Variance of the pixel intensities 
 
-          the region of interest.
+          in the region of interest.
         - NaN
 
-   Column "Track Absence" refers to the value if a track is not present at the frame.
+   The column "Track Absence" indicates the value if a cell track is not present at this frame.
 
 Optional Outputs
 ================
@@ -429,13 +430,16 @@ Mask, Ellipse Movies, and Vistrack Movies
      - .. figure:: _static/images/outputs/vistrack.png
           :align: center 
 
-Masks and Ellipse Movies can be used to evaluate segmentation accuracy before and after ellipse fitting, respectively. Vistrack Movies can be used to evaluate tracking accuracy.
+Masks and Ellipse Movies can be used to evaluate the accuracy of segmentation before and after ellipse fitting, respectively. Vistrack Movies can be used to evaluate the accuracy of tracking linking.
 
-All output images follow the naming convention *RowID_ColumnID_SiteID_Channel_FrameID.tif*. For example, *2_1_1_CFP_4.tif*.
+All the output images from one movie will be stored in the same folder (*RowID_ColumnID_SiteID*). Each image will follow the naming convention *RowID_ColumnID_SiteID_Channel_FrameID.tif*.
+For example, the output image for Frame 4 of the movie captured in Row 2, Column 1, and Site 1 will be stored in the folder *2_1_1* and named *2_1_1_CFP_4.tif* (assuming that the nuclear channel is CFP).
 
 Segmentation Info
 *****************
 
-MAT files storing the information of fitted ellipses at every frame. Required by Training Data GUI. 
-Output files follow the naming convention *RowID_ColumnID_SiteID_Channel_FrameID_segmentation.mat*. For example, *2_1_1_CFP_4_segmentation.mat*.
+MAT files storing the information of the fitted ellipses in one frame. Required for constructing training datasets. Optional otherwise.
+
+All the output files from one movie will be stored in the same folder (*RowID_ColumnID_SiteID*). Each image will follow the naming convention *RowID_ColumnID_SiteID_Channel_FrameID_segmentation.mat*.
+For example, the output file for Frame 4 of the movie captured in Row 2, Column 1, and Site 1 will be stored in the folder *2_1_1* and named *2_1_1_CFP_4_segmentation.mat* (assuming that the nuclear channel is CFP).
 

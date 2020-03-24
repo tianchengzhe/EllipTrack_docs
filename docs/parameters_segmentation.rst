@@ -11,6 +11,8 @@ Non-Specific Parameters (*nonspecific_para*)
 
 *  :reditalic:`nuc_radius` :gray:`(integer)` --- Average radius (in pixels) of a nucleus.
 
+   This parameter can be estimated by the area of a typical cell nucleus.
+
 *  :reditalic:`allowed_nuc_size` :gray:`(1x2 integer array)` --- Acceptable areas (in pixels) of a nucleus.
 
    Lower and upper limits. Mask components outside of this range will be removed.
@@ -19,15 +21,15 @@ Non-Specific Parameters (*nonspecific_para*)
 
    Lower and upper limits. Ellipses outside of this range will be removed.
 
-*  :greenitalic:`max_ellipse_aspect_ratio` :gray:`(double | advanced parameter)` --- Maximal aspect ratio of an ellipse.
+*  :blueitalic:`max_ellipse_aspect_ratio` :gray:`(double | advanced parameter)` --- Maximal aspect ratio of an ellipse.
 
-   Must be greater than 1. Ellipses with greater aspect ratios will be removed.
+   An aspect ratio is defined as the ratio of the major axis to the minor axis. Must be greater than 1. Ellipses with greater aspect ratios will be removed.
 
-*  :greenitalic:`max_hole_size_to_fill` :gray:`(integer | advanced parameter)` --- Maximal area (in pixels) of a hole to fill.
+*  :blueitalic:`max_hole_size_to_fill` :gray:`(integer | advanced parameter)` --- Maximal area (in pixels) of a hole to fill.
 
    In masks, a hole is defined as a set of background pixels surrounded by foreground pixels. Holes with smaller areas will be converted to foreground pixels.
 
-*  :greenitalic:`blur_radius` :gray:`(integer | advanced parameter)` --- Disk radius (in pixels) for image smoothing.
+*  :blueitalic:`blur_radius` :gray:`(integer | advanced parameter)` --- Radius (in pixels) of the disk for image smoothing.
 
 Image Binarization (*image_binarization_para*)
 ==============================================
@@ -47,6 +49,8 @@ Image Binarization (*image_binarization_para*)
 
 *  :reditalic:`background_subtraction_method` :gray:`(string)` --- Method of Background Subtraction.
 
+   Suggested for images with bright backgrounds. If running, every image is first background-subtracted and then used for Segmentation.
+
    .. list-table::
       :widths: 1 3
       :header-rows: 1
@@ -56,11 +60,11 @@ Image Binarization (*image_binarization_para*)
       * - 'none'
         - No background subtraction is performed.
       * - 'min'
-        - Minimal intensity of the image background is subtracted.
+        - Minimal intensity of the image background is subtracted from the image.
       * - 'median'
-        - Median intensity of the image background is subtracted.
+        - Median intensity of the image background is subtracted from the image.
       * - 'mean'
-        - Mean intensity of the image background is subtracted.
+        - Mean intensity of the image background is subtracted from the image.
 
 *  :reditalic:`binarization_method` :gray:`(string)` --- Method of Image Binarization.
 
@@ -156,20 +160,20 @@ Watershed (*watershed_para*)
 Ellipse Fitting (*ellipse_para*)
 ================================
 
-The following descriptions are adapted from Zafari *et al.* 2015.
+The following descriptions are adapted from Zafari *et al.* 2015. All parameters are advanced. It is often unnecessary to modify their values.
 
-*  :greenitalic:`k` :gray:`(integer | advanced parameter)` --- Consider up to k-th adjacent points to the corner point.
-*  :greenitalic:`thd1` :gray:`(integer | advanced parameter)` --- Distance (in pixels) between the ellipse centroid of the combined contour segments and the ellipse fitted to each segment.
-*  :greenitalic:`thd2` :gray:`(integer | advanced parameter)` --- Distance (in pixels) between the centroids of ellipse fitted to each segment.
-*  :greenitalic:`thdn` :gray:`(integer | advanced parameter)` --- Distance (in pixels) between contour center points.
-*  :greenitalic:`C` :gray:`(double | advanced parameter)` --- Minimal aspect ratio for corner detection.
+*  :blueitalic:`k` :gray:`(integer | advanced parameter)` --- Consider up to k-th adjacent points to the corner point.
+*  :blueitalic:`thd1` :gray:`(integer | advanced parameter)` --- Distance (in pixels) between the ellipse centroid of the combined contour segments and the ellipse fitted to each segment.
+*  :blueitalic:`thd2` :gray:`(integer | advanced parameter)` --- Distance (in pixels) between the centroids of ellipse fitted to each segment.
+*  :blueitalic:`thdn` :gray:`(integer | advanced parameter)` --- Distance (in pixels) between contour center points.
+*  :blueitalic:`C` :gray:`(double | advanced parameter)` --- Minimal aspect ratio for corner detection.
 
    Must be greater than 1. 
    
-*  :greenitalic:`T_angle` :gray:`(integer | advanced parameter)` --- Maximal angle (in degrees) of a corner.
-*  :greenitalic:`sig` :gray:`(integer | advanced parameter)` --- Standard deviation (in pixels) of the Gaussian filter.
-*  :greenitalic:`Endpoint` :gray:`(binary | advanced parameter)` --- Whether to add the end points of a curve as corner.
-*  :greenitalic:`Gap_size` :gray:`(integer | advanced parameter)` --- Maximal length of gaps (in pixels) in the contours to fill.
+*  :blueitalic:`T_angle` :gray:`(integer | advanced parameter)` --- Maximal angle (in degrees) of a corner.
+*  :blueitalic:`sig` :gray:`(integer | advanced parameter)` --- Standard deviation (in pixels) of the Gaussian filter.
+*  :blueitalic:`Endpoint` :gray:`(binary | advanced parameter)` --- Whether to add the end points of a curve as corner.
+*  :blueitalic:`Gap_size` :gray:`(integer | advanced parameter)` --- Maximal length of gaps (in pixels) in the contours to fill.
 
 Correction with Training Data (*seg_correction_para*)
 =====================================================
@@ -189,4 +193,4 @@ Correction with Training Data (*seg_correction_para*)
       * - 0
         - Training datasets are not available or not suitable.    
 
-*  :greenitalic:`min_corr_prob` :gray:`(double | advanced parameter)` --- Minimal probability (0 to 1) for correction.
+*  :blueitalic:`min_corr_prob` :gray:`(double | advanced parameter)` --- Minimal probability (0 to 1) for correction.

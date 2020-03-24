@@ -9,36 +9,46 @@ Track Linking (*track_para*)
 Global Track Linking Algorithm
 ==============================
 
-*  :greenitalic:`skip_penalty` :gray:`(double | advanced parameter)` --- Penalty score for skipping one frame.
+All parameters are advanced. It is often unnecessary to modify their values.
 
-   Score is calculated by ln(Prob) - ln(1-Prob).
+*  :blueitalic:`skip_penalty` :gray:`(double | advanced parameter)` --- Score to subtract (>0) when cell tracks skip a frame.
 
-*  :greenitalic:`multiple_cells_penalty` :gray:`(double | advanced parameter)` --- Penalty score for two tracks mapping to the same ellipse.
-*  :greenitalic:`min_track_score` :gray:`(double | advanced parameter)` --- Minimal score of a track to be added to the cell lineages.
-*  :greenitalic:`min_track_score_per_step` :gray:`(double | advanced parameter)` --- Minimal score of a track between two neighboring frames.
+   Score is calculated by ln(Prob) - ln(1-Prob). A positive (negative) score indicates that the probability of cell lineages increases (decreases).
 
-   Cell tracks with lower scores between any two neighboring frames will not be considered.
+*  :blueitalic:`multiple_cells_penalty` :gray:`(double | advanced parameter)` --- Score to subtract (>0) when two cell tracks map to the same ellipse.
+*  :blueitalic:`min_track_score` :gray:`(double | advanced parameter)` --- Minimal score of a cell track (>0) to be added to the cell lineages.
 
+   
+
+
+   This score should be positive, such that only cell tracks increasing the probability of cell lineages will be included.
+
+*  :blueitalic:`min_track_score_per_step` :gray:`(double | advanced parameter)` --- Minimal score of a cell track between two neighboring frames.
+
+   Cell tracks with lower scores between any two neighboring frames will not be considered. 
+   This score can be negative, such that cell tracks with occasional adverse probabilities between neighboring frames can still be considered.
+   
 Local Track Correction (Post-Processing)
 ========================================
 
-*  :greenitalic:`min_swap_score` :gray:`(double | advanced parameter)` --- Minimal gained score for alternative track configurations.
+*  :blueitalic:`min_swap_score` :gray:`(double | advanced parameter)` --- Step 1. Minimal score gain (>0) for alternative track configurations.
 
-   Configurations with lower score gains will not be considered.
+   Configurations with lower score gains will not be considered. 
+   This value should be positive, such that only the significant mistakes of the global algorithm will be corrected. 
 
-*  :greenitalic:`mitosis_detection_min_prob` :gray:`(double | advanced parameter)` --- Minimal probability (0 to 1) for mitosis detection.
+*  :blueitalic:`mitosis_detection_min_prob` :gray:`(double | advanced parameter)` --- Step 4. Minimal probability (0 to 1) for mitosis detection.
 
    Mitosis events will be detected if both mother and daughters have probabilities greater than this value.
 
-*  :greenitalic:`critical_length` :gray:`(integer | advanced parameter)` --- Critical length (in frames) for fixing mistakes related to under- and over-segmentation (Step 2).
+*  :blueitalic:`critical_length` :gray:`(integer | advanced parameter)` --- Step 2. Critical length (in frames) for fixing mistakes related to under- and over-segmentation.
 
    Suggested to be 10-20% of a typical cell cycle duration.
 
-*  :reditalic:`min_track_length` :gray:`(integer)` --- Minimal length (in frames) of a valid track.
+*  :reditalic:`min_track_length` :gray:`(integer)` --- Step 5. Minimal length (in frames) of a valid cell track.
 
-   Shorter tracks will be removed.
+   Shorter cell tracks will be removed.
 
-*  :reditalic:`max_num_frames_to_skip` :gray:`(integer)` --- Maximal number of frames a valid track can skip.
+*  :reditalic:`max_num_frames_to_skip` :gray:`(integer)` --- Step 5. Maximal number of frames a valid cell track can skip.
 
-   Tracks skipping more frames will be removed.
+   Cell tracks skipping more frames will be removed.
    

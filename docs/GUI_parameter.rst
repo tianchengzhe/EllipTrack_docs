@@ -29,11 +29,14 @@ Panel 1
 2. Select the number of channels.
 3. Channel-specific information.
 
-   *  **Channel** --- Name of the fluorescence channel
-   *  **Signal** --- Name of the signal to measure
-   *  **Image Path** --- Path to the folder storing the images. Check "Same" if images of all channels locate in the same folder.
+   *  **Channel** --- Name of the fluorescence channel. 
+   
+      The first channel should image cell nuclei. Images of this channel will be used for Segmentation and Track Linking. Images of other channels will be used for Signal Extraction.
+   
+   *  **Signal** --- Name of the signal to measure.
+   *  **Image Path** --- Path to the folder storing the images. Check "Same" if the images of all channels locate in the same folder.
 
-      For Nikon ND2 format, click ">" of the nuclear channel and a new GUI pops up. Users may edit and arrange the order of loaded paths.
+      For Nikon ND2 format, click ">" of the nuclear channel and a new GUI pops up. Users may edit and arrange the order of folders.
       
       .. figure:: _static/images/parameter/1_1_extra.png
          :align: center
@@ -44,7 +47,7 @@ Panel 1
 
 4. Format of image filenames. 
 
-   Specify the full filenames for image sequences and stacks, and a filename prefix for Nikon ND2 format.
+   Specify the full filenames for image sequences and stacks, and a filename prefix for the Nikon ND2 format.
    Click the buttons below to add variable information (e.g. Row ID, Channel Name). Click "Check Filename" to examine whether the format meets expectation.
 
    .. admonition:: Example
@@ -114,7 +117,7 @@ Panel 1
 
          Current format: ``Well%b``
 
-      *  Add Column ID: Click "Add Column ID", and type "2" (for 3 digits) in the pop-up text box.
+      *  Add Column ID: Click "Add Column ID", and type "2" (for 2 digits) in the pop-up text box.
 
          Current format: ``Well%b%02c``;
 
@@ -132,7 +135,7 @@ Panel 2
 .. figure:: _static/images/parameter/1_2.png
    :align: center
 
-1. Movie Coordinate and Frame ID --- Check "Not Multi-Well Plate" if movies are not captured on a multi-well plate.
+1. Movie Coordinate and Frame ID --- Check "Not Multi-Well Plate" if movies are not captured on a multi-well plate. Frame ID can start with 0.
 2. Camera dark noises (CMOS Offset) --- Optional. Path to the MAT file storing the camera dark noises. Leave empty if not available.
 3. Method of Jitter Correction
 
@@ -165,7 +168,7 @@ Panel 2
 
 4. Extract individual images --- Nikon ND2 format only. For Training Data GUI.
 
-   Type movie information and destination folder ("Path"), and click "Extract". Only extract the images from which training datasets will be constructed.
+   Type movie information and the destination folder ("Path"), and click "Extract". Only extract the images from which training datasets will be constructed.
 
 Input/Output (*inout_para*)
 ===========================
@@ -204,6 +207,9 @@ Segmentation (*segmentation_para*)
 
 1. Image information --- Specify the image to examine, and click "Load Image" to load it into GUI.
 2. Range of pixel intensities --- Specify the lower and upper limits for display.
+
+   The default values are the lowest and highest pixel intensities of the imported image. Adjust this range to visualize dim cell nuclei.
+
 3. Parameters for segmentation.
 
    Parameters are organized by steps. For each step, edit the parameter values and click "Update" to visualize the result on the left. If satisfactory, click "Next" to go to the next step.
@@ -215,6 +221,8 @@ Segmentation (*segmentation_para*)
 
       * - Situation
         - Suggested Option
+      * - Images have bright backgrounds.
+        - Background Subtraction: Any but "None".
       * - Accurate nuclear boundaries 
       
           not detected by Image Binarization.
@@ -236,6 +244,8 @@ Segmentation (*segmentation_para*)
              
             Method: Select "Local"
 
+   For "Ellipse Fitting", all the parameters are advanced. It is often unnecessary to modify their values.
+
    For "Correction with Training Data", removed ellipses are colored in blue and split ellipses are colored in green.
 
    If error occurs, an error dialog will appear.
@@ -244,7 +254,7 @@ Segmentation (*segmentation_para*)
       :align: center
       :width: 300
 
-   GUI will switch to the step with error. Panel on the left will display the result from the previous step, with text "Segmentation Error" on the top left corner.
+   GUI will switch to the step with error. Panel on the left will display the result from the previous step, with text "Segmentation Error" on the top left.
 
    .. figure:: _static/images/parameter/3_extra2.png
       :align: center
@@ -281,9 +291,9 @@ Panel 1
 
 2. Inference result.
 
-   For "Global", migration speeds are visualized in a histogram, and the inferred speed is shown as a vertical line.
+   For "Global", the migration speeds are visualized in a histogram, and the inferred speed is shown as a vertical line.
 
-   For "Time" and "Cell Density", migration speeds are plotted against Frame IDs or the numbers of cells in the local neighborhoods. Inferred speeds are visualized by a black line.
+   For "Time" and "Cell Density", the migration speeds are plotted against Frame IDs or the numbers of cells in the local neighborhoods. Inferred speeds are visualized by a black line.
 
 Panel 2
 *******
@@ -297,7 +307,7 @@ Panel 2
 
 2. Method of migration probability calculation.
 
-   For the former option, migration probability is calculated by
+   For the former option, the migration probability is calculated by
 
    .. math::
       
@@ -309,7 +319,7 @@ Panel 2
    :math:`P_{mig}\left(D_{i,t}, D_{j,t+1}\right)` is the probability that a cell migrates from the position of :math:`D_{i,t}` to the position of :math:`D_{j,t+1}` by random walk;
    and :math:`P_{nonmig}` is a constant null probability for migration.
 
-   For the latter option, migration probability equals to :math:`P_{mig}\left(D_{i,t}, D_{j,t+1}\right)`.
+   For the latter option, the migration probability equals to :math:`P_{mig}\left(D_{i,t}, D_{j,t+1}\right)`.
 
 Track Linking (*track_para*)
 ============================
@@ -319,7 +329,13 @@ Track Linking (*track_para*)
 
 1. Validity of cell tracks.
 
-   Shorter tracks or tracks skipping more frames are removed. Mitosis events associated with these tracks are removed as well.
+   Shorter tracks or tracks skipping more frames will be removed. Mitosis events associated with these tracks will be removed as well.
+
+2. Minimal track scores.
+
+   A positive (negative) score indicates that the probability of cell lineages increases (decreases).
+   A cell track should have an overall positive score to be added to the cell lineages.
+   However, we usually allow a cell track to have a slightly negative score between two neighboring frames, such that tracks with occasional adverse probabilities can still be considered.
 
 Signal Extraction (*signal_extraction_para*)
 ============================================
@@ -336,13 +352,13 @@ Signal Extraction (*signal_extraction_para*)
       * - Quantity
         - Distance between the black dash line (ellipse) and ...
       * - Outer, Nucleus
-        - Outer boundary of the orange (nucleus) region
+        - Outer boundary of the orange region (nucleus)
       * - Inner, Cyto Ring
-        - Inner boundary of the dark green (cyto ring) region
+        - Inner boundary of the dark green region (cytoplasmic ring) 
       * - Outer, Cyto Ring
-        - Outer boundary of the dark green (cyto ring) region 
+        - Outer boundary of the dark green region (cytoplasmic ring)  
       * - Outer, Membrane
-        - Outermost point of the light green (cyto) region
+        - Outermost point of the light green region (cytoplasm) 
 
 2. Percentiles to measure
 
@@ -351,5 +367,5 @@ Signal Extraction (*signal_extraction_para*)
 Save Parameters
 ===============
 
-Click "Save" to save the parameter values. File *parameters.m* will appear in the *GUI* folder. Move this file to the main folder (where *mainfile.m* locates).
+Click "Save" to save the parameter values. File *parameters.m* will appear in the *GUI* folder. Move this file to the main folder of EllipTrack (where *mainfile.m* locates).
 

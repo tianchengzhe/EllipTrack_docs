@@ -9,22 +9,22 @@ Movie Definition (*movie_definition*)
 *  :reditalic:`image_type` :gray:`(string)` --- Movie format. 
 
    .. list-table::
-      :widths: 1 2
+      :widths: 1 3
       :header-rows: 1
 
       * - Option
         - Movie Format
       * - 'seq'
-        - Image Sequences
+        - Image Sequences (Individual Images)
       * - 'stack'
-        - Image Stacks
+        - Image Stacks (Multi-Page Images)
       * - 'nd2'
         - Nikon ND2 Format
 
 *  :reditalic:`image_path` :gray:`(nx1 cell array)` --- Path to the folder storing the images.
 
    Image Sequences/Stacks
-     Each row stores the path to folder for the i-th channel.
+     Each row stores the path to the folder for the i-th channel. 
 
      .. admonition:: Example
         :class: hint 
@@ -39,7 +39,7 @@ Movie Definition (*movie_definition*)
 
         List the paths of different channels separately, even if all the images locate in the same folder.
 
-        **Example 2**. A movie has 3 channels: CFP, YFP, and mCherry. All images locate in ``X:/tracking_code/raw_images/``.
+        **Example 2**. A movie has 3 channels: CFP, YFP, and mCherry. All the images locate in ``X:/tracking_code/raw_images/``.
 
         .. code-block:: matlab 
 
@@ -56,7 +56,7 @@ Movie Definition (*movie_definition*)
            image_path = {'X:/tracking_code/raw_images/'};
 
    Nikon ND2 Format
-     Each row stores the path to folder for the i-th segment.
+     Each row stores the path to the folder for the i-th segment.
 
      .. admonition:: Example
         :class: hint
@@ -99,7 +99,7 @@ Movie Definition (*movie_definition*)
 
         path = 'X:/tracking_code/mat_files/cmosoffset.mat';
    
-   EllipTrack automatically adjusts all paths to the correct format with function *adjust_path* (folder *functions/utils*), though manual formatting is strongly suggested.
+   EllipTrack automatically adjusts all paths to the correct format, though manual formatting is strongly suggested.
 
 *  :reditalic:`filename_format` :gray:`(string)` -- Formats of image filenames.
 
@@ -113,33 +113,33 @@ Movie Definition (*movie_definition*)
         - Data Type
         - Availability
       * - %r
-        - Row ID. Number
+        - Row ID, Number
         - All movie formats
       * - %a
-        - Row ID. Letter (lower case)
+        - Row ID, Letter (lower case)
         - All movie formats
       * - %b
-        - Row ID. Letter (upper case)
+        - Row ID, Letter (upper case)
         - All movie formats 
       * - %c 
-        - Column ID. Number
+        - Column ID, Number
         - All movie formats 
       * - %s 
-        - Site ID. Number 
+        - Site ID, Number
         - Image sequences/stacks
       * - %i 
-        - Channel ID. Number
+        - Channel ID, Number.
         - Image sequences/stacks 
       * - %n 
-        - Channel ID. String
+        - Channel Name, String.
         - Image sequences/stacks 
       * - %t 
-        - Frame ID. Number 
+        - Frame ID. Number.
         - Image sequences  
 
    Field widths can be specified. For example, ``%03t`` indicates that Frame ID has three digits, filled with prefix zeros.
 
-   Full filenames should be specified for image sequences/stacks. A prefix is sufficient for Nikon ND2 format.
+   Full filenames should be specified for image sequences/stacks. A prefix is sufficient for the Nikon ND2 format.
 
    .. admonition:: Example
       :class: hint
@@ -158,9 +158,11 @@ Movie Definition (*movie_definition*)
 
          filename_format = 'Well%b%02c';
 
+   Note that this parameter only defines the format of image filenames, not the actual values of Row ID, Frame ID, etc. These values will be defined by the parameters below.
+
 *  :reditalic:`channel_names` :gray:`(nx1 cell array)` --- Name of the fluorescence channels
 
-   Each row stores the name of the i-th channel. For image sequences/stacks, must match the order of *image_path*.
+   Each row stores the name of the i-th channel. For image sequences/stacks, they must match the order of *image_path*. The first channel must image cell nuclei. 
 
 *  :reditalic:`signal_names` :gray:`(nx1 cell array)` --- Names of the signals to measure
 
@@ -170,7 +172,7 @@ Movie Definition (*movie_definition*)
 
    Each row is an indicator variable (1 for compute, 0 for not compute) for the i-th channel. Must match the order of *channel_names*. The first element must be 0.
 
-*  :reditalic:`bias_paths` :gray:`(nx1 cell array)` --- Paths to the MAT files storing illumination biases.
+*  :reditalic:`bias_paths` :gray:`(nx1 cell array)` --- Paths to the MAT files storing the illumination biases.
 
    Each row stores the path for the i-th channel. Must match the order of *channel_names*.
 
@@ -218,7 +220,7 @@ Movie Definition (*movie_definition*)
                     'X:/tracking_code/bias/YFP.mat';
                     'X:/tracking_code/bias/mCherry.mat'};
 
-*  :reditalic:`cmosoffset_path` :gray:`(string)` --- Path to the MAT file storing camera dark noises.
+*  :reditalic:`cmosoffset_path` :gray:`(string)` --- Path to the MAT file storing the camera dark noises.
 
 *  :reditalic:`wells_to_track` :gray:`(nx3 integer array)` --- Movie coordinates in a multi-well plate.
 

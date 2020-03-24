@@ -6,17 +6,17 @@
 Tutorial
 ========
 
-This tutorial provides a step-by-step instruction on how to use EllipTrack. Scripts reproducing this tutorial and EllipTrack output files can be downloaded from this `Google Drive folder`_.
+This tutorial provides a step-by-step instruction on how to use EllipTrack. The scripts reproducing this tutorial and all the output files can be downloaded from this `Google Drive folder`_.
 
 Description of Dataset
 ======================
 
 A sample movie of HeLa cells from Cell Tracking Challenge (Fluo-N2DL-HeLa, Training Movie 01) is used for this tutorial.
-In this movie, HeLa cells expressing H2B were imaged (GFP channel only) every 30 min for 46 hrs (92 frames).
+In this movie, HeLa cells expressing H2B-GFP were imaged (GFP channel only) every 30 min for 46 hrs (92 frames).
 This movie was stored as an image sequence, where *t000.tif*, *t001.tif*, etc, contain the images of Frame 0, Frame 1, etc.
-Files for camera dark noises and illumination bias were not provided. No need to perform Jitter Correction.
+Camera dark noises and illumination bias were not provided. No need to perform Jitter Correction.
 
-Download the movie `here`_. Only the *01* folder is used for this tutorial.
+Download the movie `here`_ (courtesy of the Cell Tracking Challenge organizers). Only the *01* folder will be used for this tutorial.
 
 Step 1. Set Parameter Values (1/2)
 ==================================
@@ -43,7 +43,7 @@ Movie Definition (1/2)
 
    The text box will display ``Z:/projects/tracking_code/submission2/ctc_hela/training_raw/01/`` (or other paths in your local computer).
 *  Illumination Bias --- Leave empty, since this information is not provided.
-*  Filename --- Procedure: Type "t" in the text box; Click "Add Frame ID" and Type 3 in the pop-up text box; Type ".tif" in the text box. Result should be "t%03t.tif".
+*  Filename --- Procedure: Type "t" in the text box; Click "Add Frame ID" and Type 3 in the pop-up text box; Type ".tif" in the text box. The result should be "t%03t.tif".
 
    Click "Check Filename" and the following message box appears. The input filename meets expectation.
 
@@ -71,9 +71,39 @@ Input/Output
 
 *  Training Data --- Leave empty, since no training datasets have been constructed for this movie.
 
-   If training datasets are available, load them and skip Step 2 and Step 3 of this tutorial.
-*  MAT Files --- Click ">" to select the output folder. 
-*  Mask, Ellipse Movie, Segmentation Info, Vistrack Movie --- To generate these outputs, check "Yes" and click ">" to select the output folders.
+   If training datasets have been constructed, load them here and skip Step 2 and Step 3 of this tutorial.
+*  MAT Files --- Create a dedicated folder to store the output files. Click ">" to select this folder. 
+
+   For example, we create a folder called *results* in the directory ``Z:/projects/tracking_code/submission2/documentation/tutorial_to_upload/`` to store the output files.
+   After selecting this folder with the ">" button, the text box should display ``Z:/projects/tracking_code/submission2/documentation/tutorial_to_upload/results/``.
+
+   Note that the *results* folder must be created manually. EllipTrack will not create this folder automatically.
+
+*  Optional outputs.
+
+   .. list-table:: 
+      :widths: 1 2
+      :header-rows: 1
+
+      * - Output
+        - Required?
+      * - Mask
+        - Optional
+      * - Ellipse Movie
+        - Optional
+      * - Segmentation Info
+        - Required for constructing training datasets.
+
+          Optional otherwise.
+      * - Vistrack Movie  
+        - Optional
+
+   To generate these files, check "Yes", create a dedicated folder for each output, and click ">" to select this folder. 
+   Note that the dedicated folders must be created manually. EllipTrack will not create these folders automatically.
+
+   For each output, all the files from the same movie will be stored in the same folder (*RowID_ColumnID_SiteID*). 
+   For example, the files generated in this tutorial will be stored in the folder *1_1_1* under the directory specified in the GUI.
+   To access these files (e.g. mask), go to the folder ``Z:/projects/tracking_code/submission2/documentation/tutorial_to_upload/mask/1_1_1/`` (or other paths in your local computer).
 
 Segmentation
 ************
@@ -82,7 +112,7 @@ Segmentation
    :align: center
 
 *  Load Image --- To examine Frame 20, type 20 in the "Frame" text box and click "Load Image".
-*  Intensity --- Modify the values to 33000 and 35000 to visualize dim cell nuclei.
+*  Intensity --- Modify the values to 33000 and 33500 to visualize dim cell nuclei.
 *  Segmentation parameters --- Parameter values are determined as follows. Arrows are added outside of GUI to indicate the improvements.
 
    .. list-table::
@@ -104,7 +134,7 @@ Segmentation
              :width: 300
       * - **Image Binarization**
 
-          Due to the strong image background,
+          Due to the bright image background,
 
           *  Bg Sub --- Select "Min".
 
@@ -156,10 +186,12 @@ Segmentation
              :align: center
              :width: 300
 
-   If training datasets are available, users may choose to run this step. 
-   It is suggested to set "Min Prob" to a very high value (0.9 or above) to avoid modifying ellipses with great uncertainties.
+   For **Ellipse Fitting**, all the parameters are advanced. It is often unnecessary to modify their values.
+   
+   If training datasets have been constructed, users may choose to run **Correction with Training Data**. 
+   It is suggested to set "Min Prob" to a very high value (0.9 or above) to avoid modifying the ellipses with high uncertainties.
 
-*  Examine other images by typing Frame IDs in the "Frame" text box and clicking "Load Images". Modify parameter values if necessary. Repeat this process until segmentation is satisfactory.
+*  Examine other images by typing Frame IDs in the "Frame" text box and clicking "Load Images". Modify the parameter values if necessary. Repeat this process until segmentation is satisfactory.
 
 Save Parameters
 ***************
@@ -171,7 +203,7 @@ Step 2. Run Segmentation
 
 Objective: Perform Segmentation.
 
-*  Navigate MATLAB to the main folder of EllipTrack. Open *mainfile.m* in MATLAB Editor.
+*  Navigate MATLAB to the main folder of EllipTrack. Open *mainfile.m* in the MATLAB Editor.
 *  Execute Line 1-14 (up to Segmentation). Procedure: Select these lines, right click the mouse, and select "Evaluate Selection".
 
    This process will take 30-60 min. *segmentation.mat* and other optional outputs will be generated in their respective folders.
@@ -192,7 +224,7 @@ Open Training Data GUI
 
    To construct a new training dataset from Frame 11 to Frame 50, follow the procedure.
 
-   *  Folder --- Click ">" and select the folder where the raw images locate.
+   *  Folder --- Click ">" and select the folder where the images of the nuclear channel locate.
    
       The text box will display ``Z:/projects/tracking_code/submission2/ctc_hela/training_raw/01/`` (or other paths in your local computer).
 
@@ -205,14 +237,14 @@ Open Training Data GUI
    *  Bias --- Leave empty, since this information is not provided.
    *  SegInfo --- Click ">" and select the folder where the "Segmentation Info" files locate.
 
-      The text box will display ``Z:/projects/tracking_code/submission2/documentation/tutorial_to_upload/seg_info/`` (or other paths in your local computer).
+      The text box will display ``Z:/projects/tracking_code/submission2/documentation/tutorial_to_upload/seg_info/1_1_1/`` (or other paths in your local computer).
 
    *  Existing --- Leave empty, since the objective is to create a new training dataset.
 
       If the objective is to modify an existing training dataset, specify its location here.
 
    *  Output --- Click ">" and select the output folder.
-*  Click "Import Data" to import images.
+*  Click "Import Data" to import the images.
 
 Morphological Training
 **********************
@@ -254,6 +286,9 @@ Morphological Training
    Around 400 samples are constructed here. 
    Sample numbers of :training1:`No Cells`, :training2:`One Cell`, and :training3:`Two Cells` approximately reflect the accuracy of segmentation.
    Most mitosis events (:training4:`Before M` and :training5:`After M`) are trained. No :training6:`Apoptosis` events are trained, as cell apoptosis is rare in the movie.
+   These samples cover the broad spectra of cell morphology, brightness, and behaviors.
+
+   **Minimal Requirement**. Label one ellipse. Can be any event.
 
 Motion Training
 ***************
@@ -261,19 +296,19 @@ Motion Training
 .. figure:: _static/images/tutorial/3_3.png
    :align: center
 
-*  Construct subtracks of cells.
+*  Manually label a few cell tracks.
 
-   To construct a subtrack, specify a new Cell ID in the "To Cell" text box and click ">". 
-   Label a cell's appearance in every frame by clicking the respective ellipse and clicking "Record" (or pressing the "R" hotkey).
+   To label a cell track, specify a new Cell ID in the "To Cell" text box and click ">". 
+   Label a cell's appearance in every frame by clicking its respective ellipse and clicking "Record" (or pressing the "R" hotkey).
    To remove a labeled ellipse, click the ellipse of interest and then click "Clear" (or press the "C" hotkey).
-   To remove a subtrack, specify its Cell ID in the "Clear Cell" text box and click ">".
+   To remove a cell track, specify its Cell ID in the "Clear Cell" text box and click ">".
 
-   10 cells are labeled for this movie. These cells cover the broad spectra of cell brightness and migration speeds in the movie.
+   10 cells are labeled for this movie. These cells cover the broad spectra of cell morphology, brightness, and behaviors.
 
 Save Training Dataset
 *********************
 
-Click "Finish". File *training_data_11_50.mat* is generated in the output folder.
+Click "Finish". File *training_data_11_50.mat* will be generated in the output folder.
 
 Step 4. Set Parameter Values (2/2)
 ==================================
@@ -307,7 +342,7 @@ Prediction of Events (1/2)
 .. figure:: _static/images/tutorial/4_1.png
    :align: center
 
-*  Migration Speeds --- Select "Global", as no clear trend between migration speeds and time/density is observed.
+*  Migration Speeds --- Select "Global", as no clear trend between the migration speeds and time/density is observed.
 
    .. list-table::
       :widths: 1 5
@@ -327,6 +362,8 @@ Prediction of Events (1/2)
         - .. figure:: _static/images/tutorial/4_1_3.png
              :align: center
              :width: 500
+
+   Note that the inference result is training dataset-dependent. These results are obtained with the dataset provided in the `Google Drive folder`_. 
 
 Prediction of Events (2/2)
 **************************
@@ -348,7 +385,7 @@ Track Linking
    Default values of these parameters are often sufficient for a satisfactory tracking performance. 
    For this movie, these values are specifically adjusted to improve the mitosis detection. 
 
-Note: "Post-Processing" has been renamed as "Local Track Correction" in the newer commits.
+Note: "Post-Processing" has been renamed as "Local Track Correction" in the newer versions.
 
 Signal Extraction
 *****************
@@ -361,16 +398,16 @@ Keep the default values.
 Save Parameters
 ***************
 
-Click "Save". File *parameters.m* is generated in the *GUI* folder. Replace the namesake in the main folder of EllipTrack (i.e. the parent folder of *GUI*) by this file.
+Click "Save". File *parameters.m* will be generated in the *GUI* folder. Replace the namesake in the main folder of EllipTrack (i.e. the parent folder of *GUI*) by this file.
 
 Step 5. Run Track Linking and Signal Extraction
 ===============================================
 
 Objective: Perform Track Linking and Signal Extraction.
 
-*  Navigate MATLAB to the main folder of EllipTrack. Open *mainfile.m* in MATLAB Editor.
+*  Navigate MATLAB to the main folder of EllipTrack. Open *mainfile.m* in the MATLAB Editor.
 *  If Segmentation has not been performed (Step 2-3 have been skipped), execute *mainfile.m*.
-*  Otherwise, load the segmentation results into the workspace as follows.
+*  Otherwise, load the segmentation results into the workspace.
 
    * Replace Line 13 (Segmentation) by 
 
