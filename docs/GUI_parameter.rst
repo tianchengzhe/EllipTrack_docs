@@ -293,7 +293,15 @@ Panel 1
 
    For "Global", the migration speeds are visualized in a histogram, and the inferred speed is shown as a vertical line.
 
-   For "Time" and "Cell Density", the migration speeds are plotted against Frame IDs or the numbers of cells in the local neighborhoods. Inferred speeds are visualized by a black line.
+   .. figure:: _static/images/parameter/4_1_1.png
+      :align: center
+      :width: 500
+
+   For "Time" and "Cell Density", the migration speeds are plotted against Frame IDs or the numbers of cells in the local neighborhoods. The inferred speeds are visualized by a black line.
+
+   .. figure:: _static/images/parameter/4_1_2.png
+      :align: center
+      :width: 500
 
 Panel 2
 *******
