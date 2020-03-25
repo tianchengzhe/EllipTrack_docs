@@ -53,7 +53,7 @@ Panel 1
    .. admonition:: Example
       :class: hint
 
-      **Example 1 (Image Sequences)**. Filenames follow the convention `RowID_ColumnID_SiteID_ChannelName_FrameID.tif`. Frame ID having three digits. For example, `1_2_3_CFP_004.tif`.
+      **Example 1 (Image Sequences)**. Filenames follow the convention `RowID_ColumnID_SiteID_ChannelName_FrameID.tif`. Frame ID has a minimal length of three digits, filled with prefix 0. For example, `1_2_3_CFP_004.tif`.
 
       Follow the steps below to specify the format.
 
@@ -89,7 +89,7 @@ Panel 1
 
          Current format: ``%r_%c_%s_%n_``
 
-      *  Add Frame ID: Click "Add Frame ID", and type "3" (for 3 digits) in the pop-up text box.
+      *  Add Frame ID: Click "Add Frame ID", and type "3" (for a minimal length of 3 digits) in the pop-up text box.
 
          Current format: ``%r_%c_%s_%n_%03t``
 
@@ -105,7 +105,7 @@ Panel 1
             :align: center
             :width: 300
 
-      **Example 2 (Nikon ND2 Format)**. Filenames follow the convention `WellRowIDColumnID_CFP,YFP,mCherry_Seq00XX.nd2`. Row ID is an upper-case letter; Column ID is a two-digit number; and *XX* represents an arbitrary number. For example, `WellA02_CFP,YFP,mCherry_Seq0001.nd2`.
+      **Example 2 (Nikon ND2 Format)**. Filenames follow the convention `WellRowIDColumnID_CFP,YFP,mCherry_Seq00XX.nd2`. Row ID is an upper-case letter; Column ID is a two-digit number, filled with prefix 0; and *XX* represents an arbitrary number. For example, `WellA02_CFP,YFP,mCherry_Seq0001.nd2`.
       
       Follow the steps below to specify the format.
 

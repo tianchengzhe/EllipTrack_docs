@@ -137,7 +137,7 @@ Movie Definition (*movie_definition*)
         - Frame ID. Number.
         - Image sequences  
 
-   Field widths can be specified. For example, ``%03t`` indicates that Frame ID has three digits, filled with prefix zeros.
+   Field widths can be specified. For example, ``%03t`` indicates that Frame ID has a minimal length of three digits, filled with prefix 0. This specifier will be converted to 001, 100, and 1000 for Frame 1, 100, and 1000.
 
    Full filenames should be specified for image sequences/stacks. A prefix is sufficient for the Nikon ND2 format.
 
@@ -145,14 +145,14 @@ Movie Definition (*movie_definition*)
       :class: hint
 
       **Example 1 (Image Sequences)**. 
-      The filenames follow the convention `RowID_ColumnID_SiteID_ChannelName_FrameID.tif`. Frame ID has three digits. For example, `1_2_3_CFP_004.tif`.
+      The filenames follow the convention `RowID_ColumnID_SiteID_ChannelName_FrameID.tif`. Frame ID has a minimal length of three digits, filled with prefix 0. For example, `1_2_3_CFP_004.tif`.
 
       .. code-block:: matlab
 
          filename_format = '%r_%c_%s_%n_%03t.tif';
 
       **Example 2 (Nikon ND2 Format)**. 
-      The filenames follow the convention `WellRowIDColumnID_CFP,YFP,mCherry_Seq00XX.nd2`. Row ID is an upper-case letter; Column ID is a two-digit number; and *XX* represents an arbitrary number. For example, `WellA02_CFP,YFP,mCherry_Seq0001.nd2`.
+      The filenames follow the convention `WellRowIDColumnID_CFP,YFP,mCherry_Seq00XX.nd2`. Row ID is an upper-case letter; Column ID is a two-digit number, filled with prefix 0; and *XX* represents an arbitrary number. For example, `WellA02_CFP,YFP,mCherry_Seq0001.nd2`.
       
       .. code-block:: matlab
 
