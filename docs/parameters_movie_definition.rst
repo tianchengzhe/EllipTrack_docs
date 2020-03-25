@@ -145,14 +145,14 @@ Movie Definition (*movie_definition*)
       :class: hint
 
       **Example 1 (Image Sequences)**. 
-      Filenames follow the convention `RowID_ColumnID_SiteID_ChannelName_FrameID.tif`. Frame ID having three digits. For example, `1_2_3_CFP_004.tif`.
+      The filenames follow the convention `RowID_ColumnID_SiteID_ChannelName_FrameID.tif`. Frame ID has three digits. For example, `1_2_3_CFP_004.tif`.
 
       .. code-block:: matlab
 
          filename_format = '%r_%c_%s_%n_%03t.tif';
 
       **Example 2 (Nikon ND2 Format)**. 
-      Filenames follow the convention `WellRowIDColumnID_CFP,YFP,mCherry_Seq00XX.nd2`. Row ID is an upper-case letter; Column ID is a two-digit number; and *XX* represents an arbitrary number. For example, `WellA02_CFP,YFP,mCherry_Seq0001.nd2`.
+      The filenames follow the convention `WellRowIDColumnID_CFP,YFP,mCherry_Seq00XX.nd2`. Row ID is an upper-case letter; Column ID is a two-digit number; and *XX* represents an arbitrary number. For example, `WellA02_CFP,YFP,mCherry_Seq0001.nd2`.
       
       .. code-block:: matlab
 

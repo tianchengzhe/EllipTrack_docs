@@ -21,7 +21,7 @@ Specify the following information in the Setting panel.
 
   *  **Folder** --- Path to the folder storing the images of the nuclear channel.
 
-     Image sequences/stacks only. For Nikon ND2 format, extract the movies into image sequences.
+     Image sequences/stacks only. For the Nikon ND2 format, extract the movies into image sequences.
 
   *  **File** --- Format of image filenames.
 
@@ -52,7 +52,7 @@ Click "Import Data" to proceed.
 Morphological Training
 ======================
 
-Objective: Label cells with representative behaviors.
+Objective: Label the cells with representative behaviors.
 
 GUI Interface
 *************
@@ -90,11 +90,11 @@ GUI Interface
 
    *  **Intensity** --- Range of pixel intensities. Specify the lower and upper limits for display. 
 
-      The default values are the lowest and highest pixel intensities of the imported image. Adjust this range to visualize dim cell nuclei. 
+      The default values are the lowest and highest pixel intensities of the imported image. Adjust this range to visualize the dim cell nuclei. 
 
 2. Morphology.
 
-   Six events are available. Numbers of recorded ellipses are shown in the last column.
+   Six events are available. The numbers of recorded ellipses are shown in the last column.
 
    .. list-table::
       :widths: 1 1 4 1
@@ -141,7 +141,7 @@ GUI Interface
 
 3. Training result.
 
-   Image overlaid by fitted ellipses. Trained ellipses are highlighted in the symbolic colors of their respective events.
+   Image overlaid by the fitted ellipses. Trained ellipses are highlighted in the symbolic colors of their respective events.
 
 Assign Events
 *************
@@ -154,7 +154,7 @@ The ellipse will be highlighted in the symbolic color of this event, and the num
 
 Only one event can be assigned to an ellipse. GUI assumes that the ellipses labeled with :training4:`Before M`, :training5:`After M`, or :training6:`Apoptosis` contain only one cell nucleus, and the ellipses labeled with :training1:`No Cells`, :training2:`One Cell`, or :training3:`Two Cells` are neither mitotic, newly born, nor apoptotic.
 
-Selected ellipses are colored in black. To unselect an ellipse, click any other ellipse or navigate to other frames. No training samples will be created from the unselected ellipses.
+The selected ellipses are colored in black. To unselect an ellipse, click any other ellipse or navigate to other frames. No training samples will be created from the unselected ellipses.
 
 Modify and Remove Events
 ************************
@@ -235,8 +235,8 @@ GUI Interface
 
 2. Training result.
 
-   Image overlaid by fitted ellipses. 
-   Trained ellipses of the current cell are colored in red. Other trained ellipses are colored in light red.
+   Image overlaid by the fitted ellipses. 
+   The trained ellipses of the current cell are colored in red. Other trained ellipses are colored in light red.
    Cell IDs are plotted next to the trained ellipses.
 
 Record Cells

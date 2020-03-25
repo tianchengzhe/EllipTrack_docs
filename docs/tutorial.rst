@@ -112,7 +112,7 @@ Segmentation
    :align: center
 
 *  Load Image --- To examine Frame 20, type 20 in the "Frame" text box and click "Load Image".
-*  Intensity --- Modify the values to 33000 and 33500 to visualize dim cell nuclei.
+*  Intensity --- Modify the values to 33000 and 33500 to visualize the dim cell nuclei.
 *  Segmentation parameters --- Parameter values are determined as follows. Arrows are added outside of GUI to indicate the improvements.
 
    .. list-table::
@@ -162,7 +162,7 @@ Segmentation
              :width: 300
       * - **Watershed**
 
-          To separate overlapping nuclei,
+          To separate the overlapping nuclei,
 
           *  Run? --- Check.
 
@@ -191,7 +191,7 @@ Segmentation
    If training datasets have been constructed, users may choose to run **Correction with Training Data**. 
    It is suggested to set "Min Prob" to a very high value (0.9 or above) to avoid modifying the ellipses with high uncertainties.
 
-*  Examine other images by typing Frame IDs in the "Frame" text box and clicking "Load Images". Modify the parameter values if necessary. Repeat this process until segmentation is satisfactory.
+*  Examine the other images by typing their Frame IDs in the "Frame" text box and clicking "Load Images". Modify the parameter values if necessary. Repeat this process until segmentation is satisfactory.
 
 Save Parameters
 ***************
@@ -252,7 +252,7 @@ Morphological Training
 .. figure:: _static/images/tutorial/3_2.png
    :align: center
 
-*  Intensity --- Modify to 33000 and 33500 to visualize dim cell nuclei.
+*  Intensity --- Modify to 33000 and 33500 to visualize the dim cell nuclei.
 *  Construct training samples.
 
    A new training sample can be constructed by clicking an ellipse of interest and specifying its event (click ">" next to the event or press the hotkey specified in the parentheses).
@@ -284,7 +284,7 @@ Morphological Training
 *  After constructing training samples, click "Next" to proceed.
 
    Around 400 samples are constructed here. 
-   Sample numbers of :training1:`No Cells`, :training2:`One Cell`, and :training3:`Two Cells` approximately reflect the accuracy of segmentation.
+   The sample numbers of :training1:`No Cells`, :training2:`One Cell`, and :training3:`Two Cells` approximately reflect the accuracy of segmentation.
    Most mitosis events (:training4:`Before M` and :training5:`After M`) are trained. No :training6:`Apoptosis` events are trained, as cell apoptosis is rare in the movie.
    These samples cover the broad spectra of cell morphology, brightness, and behaviors.
 
@@ -304,6 +304,8 @@ Motion Training
    To remove a cell track, specify its Cell ID in the "Clear Cell" text box and click ">".
 
    10 cells are labeled for this movie. These cells cover the broad spectra of cell morphology, brightness, and behaviors.
+
+   **Minimal Requirement**. Label 3 cells. 3 ellipses per cell.
 
 Save Training Dataset
 *********************
@@ -382,7 +384,7 @@ Track Linking
 *  Tracks to Keep --- Modify to 3 and Inf.
 *  Post-Processing, Critical Length -- Modify to Inf.
 
-   Default values of these parameters are often sufficient for a satisfactory tracking performance. 
+   The default values of these parameters are often sufficient for a satisfactory tracking performance. 
    For this movie, these values are specifically adjusted to improve the mitosis detection. 
 
 Note: "Post-Processing" has been renamed as "Local Track Correction" in the newer versions.

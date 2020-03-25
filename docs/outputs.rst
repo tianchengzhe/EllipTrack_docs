@@ -412,14 +412,14 @@ Mask, Ellipse Movies, and Vistrack Movies
    * - Ellipse Movie
      - Autoscaled images of the nuclear channel, 
 
-       overlaid by fitted ellipses.
+       overlaid by the fitted ellipses.
      - .. figure:: _static/images/outputs/ellipse_movie.png
           :align: center 
 
    * - Vistrack Movie
-     - Ellipse Movie, with Cell Track IDs plotted
+     - Ellipse Movie, with the Cell Track IDs 
 
-       next to their respective ellipses.
+       plotted next to their respective ellipses.
 
        * Green ID: Migration, including 
 

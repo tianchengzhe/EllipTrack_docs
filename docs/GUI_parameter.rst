@@ -31,7 +31,7 @@ Panel 1
 
    *  **Channel** --- Name of the fluorescence channel. 
    
-      The first channel should image cell nuclei. Images of this channel will be used for Segmentation and Track Linking. Images of other channels will be used for Signal Extraction.
+      The first channel should image cell nuclei. Images of this channel will be used for Segmentation and Track Linking. Images of the other channels will be used for Signal Extraction.
    
    *  **Signal** --- Name of the signal to measure.
    *  **Image Path** --- Path to the folder storing the images. Check "Same" if the images of all channels locate in the same folder.
@@ -208,7 +208,7 @@ Segmentation (*segmentation_para*)
 1. Image information --- Specify the image to examine, and click "Load Image" to load it into GUI.
 2. Range of pixel intensities --- Specify the lower and upper limits for display.
 
-   The default values are the lowest and highest pixel intensities of the imported image. Adjust this range to visualize dim cell nuclei.
+   The default values are the lowest and highest pixel intensities of the imported image. Adjust this range to visualize the dim cell nuclei.
 
 3. Parameters for segmentation.
 
@@ -222,7 +222,9 @@ Segmentation (*segmentation_para*)
       * - Situation
         - Suggested Option
       * - Images have bright backgrounds.
-        - Background Subtraction: Any but "None".
+        - * Image Binarization
+        
+            Bg Sub: Any option but "None".
       * - Accurate nuclear boundaries 
       
           not detected by Image Binarization.
@@ -232,7 +234,7 @@ Segmentation (*segmentation_para*)
       * - Training datasets available and suitable.
         - Correction with Training Data: Check "Run?"
       * - Nuclei have heterogeneous brightness.
-        - * Image binarization
+        - * Image Binarization
         
             Check "Log-Transform"
              
@@ -244,9 +246,7 @@ Segmentation (*segmentation_para*)
              
             Method: Select "Local"
 
-   For "Ellipse Fitting", all the parameters are advanced. It is often unnecessary to modify their values.
-
-   For "Correction with Training Data", removed ellipses are colored in blue and split ellipses are colored in green.
+   All the parameters in "Ellipse Fitting" are advanced. It is often unnecessary to modify their values. For "Correction with Training Data", the removed ellipses are colored in blue and the split ellipses are colored in green.
 
    If error occurs, an error dialog will appear.
    
@@ -337,7 +337,7 @@ Track Linking (*track_para*)
 
 1. Validity of cell tracks.
 
-   Shorter tracks or tracks skipping more frames will be removed. Mitosis events associated with these tracks will be removed as well.
+   Shorter tracks or tracks skipping more frames will be removed. The mitosis events associated with these tracks will be removed as well.
 
 2. Minimal track scores.
 
@@ -370,7 +370,7 @@ Signal Extraction (*signal_extraction_para*)
 
 2. Percentiles to measure
 
-   Each percentile should be a number between 0 and 100 (both exclusive). Percentiles should be separated by a space.
+   Each percentile should be a number between 0 and 100 (both exclusive). The percentiles should be separated by a space.
 
 Save Parameters
 ===============
