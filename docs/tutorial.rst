@@ -310,7 +310,10 @@ Motion Training
 Save Training Dataset
 *********************
 
-Click "Finish". File *training_data_11_50.mat* will be generated in the output folder.
+Click "Finish". File *training_data_11_50.mat* will be generated in the output folder. 
+
+Since this movie is short, only one training dataset is constructed. For large-scale movies, repeat this process to construct additional ones.
+In principle, a training dataset should be constructed from every representative segment of the movie.
 
 Step 4. Set Parameter Values (2/2)
 ==================================
