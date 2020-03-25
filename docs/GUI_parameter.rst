@@ -99,7 +99,7 @@ Panel 1
 
       *  Examine the correctness: Click "Check Filename".
 
-         Input format meets expectation, as shown in the following message box.
+         The input format meets expectation, as shown in the following message box.
 
          .. figure:: _static/images/parameter/filename_1.png
             :align: center
@@ -123,7 +123,7 @@ Panel 1
 
       *  Examine the correctness: Click "Check Filename".
 
-         Input format meets expectation, as shown in the following message box.
+         The input format meets expectation, as shown in the following message box.
 
          .. figure:: _static/images/parameter/filename_2.png
             :align: center
