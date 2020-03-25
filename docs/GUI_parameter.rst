@@ -182,7 +182,9 @@ Input/Output (*inout_para*)
 
 2. Outputs --- Paths to the folders storing the outputs.
 
-   Generating "MAT Files" is compulsory. Other outputs are optional. Un-check "Generate?" if not generating this output.
+   "MAT Files" is compulsory, and other outputs are optional. 
+   To generate an output, check "Yes", create a dedicated folder for this output, and click ">" to select this folder. 
+   Note that this folder must be created manually. EllipTrack will not create it automatically.
 
 .. list-table::
    :widths: 1 3
