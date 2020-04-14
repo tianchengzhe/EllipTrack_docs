@@ -300,8 +300,8 @@ Signal Extraction (*signals.mat*)
               intensity_percentile: 75
 
    Most fields are nx1 arrays, where each element stores the information of one frame.
-   The field *intensity_percentile* is an nx1 double array, where each element stores a percentile to measure.
-   The fields *XXX_XXX_percentile* are nx2 double matrices, where each row refers to one frame and each column refers to one percentile specified by *intensity_percentile*.
+   The field *intensity_percentile* is an mx1 double array, where each element stores a percentile to measure.
+   The fields *XXX_XXX_percentile* are nxm double matrices, where each row refers to one frame and each column refers to one percentile specified by *intensity_percentile*.
 
    .. code-block:: matlab
 
