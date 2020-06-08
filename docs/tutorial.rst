@@ -8,6 +8,8 @@ Tutorial
 
 This tutorial provides a step-by-step instruction on how to use EllipTrack. The scripts reproducing this tutorial and all the output files can be downloaded from this `Google Drive folder`_.
 
+Note: This tutorial was written with an earlier version of EllipTrack. The scripts for Segmentation has been updated since. There is no change in execution, but do expect very minor difference in the tracking results. The old version of EllipTrack that completely reproduces this tutorial is available in the Google Drive folder. 
+
 Description of Dataset
 ======================
 
